@@ -1,26 +1,23 @@
 import React from 'react';
 
+import { useAppState } from './context/AppStateContext';
+
 import Container from './components/Container';
 import Column from './components/Column';
-import Card from './components/Card';
 import AddNewItem from './components/AddNewItem';
 
-const App = () => (
-  <Container>
-    <Column text="To Do">
-      <Card text="Ganerate app scafold" />
-    </Column>
+const App = () => {
+  const { state } = useAppState();
 
-    <Column text="In Progress">
-      <Card text="Learn Typescript" />
-    </Column>
+  return (
+    <Container>
+      {state.lists.map((list, index) => (
+        <Column text={list.text} key={list.id} index={index} />
+      ))}
 
-    <Column text="Done">
-      <Card text="Begin to use static typing" />
-    </Column>
-
-    <AddNewItem toggleButtonText="+ Add another list" onAdd={console.log} />
-  </Container>
-);
+      <AddNewItem toggleButtonText="+ Add another list" onAdd={console.log} />
+    </Container>
+  );
+};
 
 export default App;
