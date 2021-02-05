@@ -11,8 +11,8 @@ const App = () => {
 
   return (
     <Container>
-      {state.lists.map((list, index) => (
-        <Column text={list.text} key={list.id} index={index} />
+      {state.lists.map((list, i) => (
+        <Column text={list.text} key={list.id} index={i} />
       ))}
 
       <AddNewItem toggleButtonText="+ Add another list" onAdd={console.log} />
